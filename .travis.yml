@@ -1,0 +1,30 @@
+language: minimal
+
+stages:
+  - build-test
+  - name: bump-version
+    if: branch = master
+
+chmod: &chmod
+  chmod +x ./devops/ci/scripts/chmod-scripts.sh && ./devops/ci/scripts/chmod-scripts.sh
+
+source: &source
+  source ./devops/definitions.sh
+
+jobs:
+  include:
+    - stage: build-test
+      script:
+        - *chmod
+        - *source
+        - ./devops/ci/scripts/build-test.job.sh
+
+    - stage: bump-version
+      script:
+        - *chmod
+        - *source
+        - ./devops/ci/scripts/bump-version.job.sh
+
+env:
+  global:
+    secure: UmVXWQivs53ieRBk1dfM9KOCfaXT73C2IZ9qQoXZumNXkcqfztnO+sgEqi3nTPiRS7f1GTm4TUSzRRUMzLr3C+nXEbr3OnI6LgWcd0ou2mzvD3R6sAlkuxczno2dcfJedNbZt4sxaUVVnim1YHQs2piZiszh0BGrhxAE7Yz/xJUNY2B9poULodoiO4Zb0meaDhcvw9SH2YuJ9FIOh/oxZ/vBe2/IIgtP82QIAXoefRyPy+4jEhgVgRoo/pq6hwUiQl0upn9ouqgKrJuf8eE5E43X6OJ7NoX0VXZtof9vbff9DmXvk2EU7hiaYt8Y9rANMripwtUDszWm97byaaQbL3oUHF0KMLFjYM37NvP0IfDE4iTiz8UaPxv+uN56IQoe51TbtvF6TyMhhWn4ZVKuT6DeeKbCnHh9yooe5a1Hn56P5YNAr2WMB6x/21xmaUY88QhMqhSewUgdrjccO/FIU4TtOx5aKbs0bE7/5yOQoxgUEClmLpDbttPYkEI1QL/Bhh0cXNLFYgnQZGsHB1NISa7asAM2E/CAEEsto9WF0lRaXkT9npV1wl7lk6x33CjhRvz4+1LqqSPulT+C8yjBW1MWfyTaJ34OjDFz8QBY7tOtE49Bq3lUanwLqQN7lnxi2vncOsGeofTUV7Z1KCqSa6mrBs79oek2rAwHKUxd44w=
