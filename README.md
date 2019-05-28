@@ -4,40 +4,36 @@
 
 ---
 
-# NGXS Labs delivery flow
+## NGXS Testing
 
-## Description
+```
+$ npm install @ngxs-labs/testing --save-dev
+```
 
-This skeleton reflects most NGXS Labs related projects. The skeleton provides a homogeneous structure in all projects without conflicts, thus we have no discrepancies.
+- [Introduction](#introduction)
+    - [Simple example](#simple-example)
 
-## Quick start
+### Introduction
 
-If you want to create a Labs project - you have to complete further steps.
+`@ngxs-labs/testing` is package for configures and initializes environment for ngxs unit testing and provides methods for creating states in unit tests.
 
-* First let's clone this repo:
-  ```console
-  git clone git@github.com:ngxs-labs/skeleton.git PROJECT_NAME
-  cd PROJECT_NAME
-  ```
+### Simple example
 
-* Let's remove the `.git` folder:
-  ```console
-  rm -rf .git
-  ```
+Unit testing is easy with NGXS. 
 
-* Install dependencies (yarn only):
-  ```console
-  yarn
-  ```
+```ts
+import { NgxsTestBed } from '@ngxs-labs/testing';
 
-* Create your Labs project by running:
-  ```console
-  yarn create-project --name PROJECT_NAME
-  ```
+describe('Zoo', () => {
 
-  For example:
-  ```console
-  yarn create-project --name dispatch-decorator
-  ```
-
-* When you push your changes to the new repo - ask someone to add your project to the `travis` CI.
+  it('it toggles feed', async(() => {
+    const { selectSnapshot, dispatch } = NgxsTestBed.configureTestingStates({ states: [ ZooState ] });
+  
+    dispatch(new FeedAnimals());
+    const feed = selectSnapshot(state => state.zoo.feed);
+    
+    expect(feed).toBe(true);
+  }));
+  
+});
+```
