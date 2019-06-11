@@ -6,6 +6,9 @@
 
 ## NGXS Testing
 
+[![Build Status](https://travis-ci.org/ngxs-labs/testing.svg?branch=master)](https://travis-ci.org/ngxs-labs/testing)
+[![NPM](https://badge.fury.io/js/%40ngxs-labs%testing.svg)](https://www.npmjs.com/package/@ngxs-labs/testing)
+
 ```
 $ npm install @ngxs-labs/testing --save-dev
 ```
