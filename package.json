@@ -10,7 +10,7 @@
     "ng": "ng",
     "lint": "ng lint",
     "test": "jest --config ./jest.config.js --coverage",
-    "build": "ng build testing && ts-node ./tools/copy-readme",
+    "build": "ng build testing && ts-node --project tsconfig.node.json ./tools/copy-readme",
     "// - UTILS": "Utility scripts",
     "format": "prettier src/**/*.ts --write"
   },
@@ -27,6 +27,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
+    "jest-preset-angular": "^7.1.1",
     "@angular-devkit/build-angular": "~0.800.0",
     "@angular-devkit/build-ng-packagr": "~0.800.0",
     "@angular/cli": "8.0.2",
