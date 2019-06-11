@@ -4,27 +4,16 @@
     "newProjectRoot": "projects",
     "projects": {
       "testing": {
-        "root": "",
+        "root": "./",
         "sourceRoot": "src",
         "projectType": "library",
-        "prefix": "testing",
+        "prefix": "",
         "architect": {
           "build": {
             "builder": "@angular-devkit/build-ng-packagr:build",
             "options": {
-              "tsConfig": "src/tsconfig.lib.json",
-              "project": "src/ng-package.json"
-            },
-            "configurations": {
-              "production": {
-                "project": "src/ng-package.prod.json"
-              }
-            }
-          },
-          "test": {
-            "builder": "@angular-builders/jest:run",
-            "options": {
-              "no-cache": false
+              "tsConfig": "./src/tsconfig.lib.json",
+              "project": "./src/ng-package.json"
             }
           },
           "lint": {

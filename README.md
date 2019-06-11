@@ -13,9 +13,6 @@
 $ npm install @ngxs-labs/testing --save-dev
 ```
 
-- [Introduction](#introduction)
-    - [Simple example](#simple-example)
-
 ### Introduction
 
 `@ngxs-labs/testing` is package for configures and initializes environment for ngxs unit testing and provides methods for creating states in unit tests.

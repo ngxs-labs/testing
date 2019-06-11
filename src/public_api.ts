@@ -1,2 +1,2 @@
 export { NgxsTestBed } from './lib/ngxs.setup';
-export * from './lib/symbol'
+export * from './lib/symbol';

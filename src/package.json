@@ -1,5 +1,4 @@
 {
-    "$schema": "../node_modules/ng-packagr/package.schema.json",
     "name": "@ngxs-labs/testing",
     "version": "0.0.1",
     "repository": {
@@ -21,15 +20,5 @@
         "@angular/core": "^7.2.15",
         "@ngxs/store": ">=3.4.3",
         "rxjs": ">=6.5.2"
-    },
-    "ngPackage": {
-        "lib": {
-            "flatModuleFile": "ngxs-labs-testing",
-            "entryFile": "public_api.ts",
-            "umdModuleIds": {
-                "@ngxs/store": "ngxs-store"
-            }
-        },
-        "dest": "../dist/testing"
     }
 }
