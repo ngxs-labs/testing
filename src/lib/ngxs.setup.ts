@@ -10,7 +10,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { NgxsModule, Store } from '@ngxs/store';
 
 import { NgxsTestModule } from './helpers/ngxs-test.module';
-import { NgxsOptionsTesting, NgxsTesting } from './symbol';
+import { DispatchFn, NgxsOptionsTesting, NgxsTesting, ResetFn, SelectFn, SelectSnapshotFn, SnapshotFn } from './symbol';
 
 export class NgxsTestBed {
     public static configureTestingStates(options: NgxsOptionsTesting): NgxsTesting {
@@ -33,6 +33,30 @@ export class NgxsTestBed {
         return {
             get store(): Store {
                 return TestBed.get(Store);
+            },
+            get snapshot(): SnapshotFn {
+                const store: Store = TestBed.get(Store);
+                return store.snapshot.bind(store);
+            },
+            get dispatch(): DispatchFn {
+                const store: Store = TestBed.get(Store);
+                return store.dispatch.bind(store);
+            },
+            get selectSnapshot(): SelectSnapshotFn {
+                const store: Store = TestBed.get(Store);
+                return store.selectSnapshot.bind(store);
+            },
+            get select(): SelectFn {
+                const store: Store = TestBed.get(Store);
+                return store.select.bind(store);
+            },
+            get selectOnce(): SelectFn {
+                const store: Store = TestBed.get(Store);
+                return store.selectOnce.bind(store);
+            },
+            get reset(): ResetFn {
+                const store: Store = TestBed.get(Store);
+                return store.reset.bind(store);
             },
             get getTestBed(): TestBedStatic {
                 return TestBed;
