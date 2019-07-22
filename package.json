@@ -21,7 +21,7 @@
     "@angular/core": "8.1.2",
     "@angular/platform-browser": "8.1.2",
     "@angular/platform-browser-dynamic": "8.1.2",
-    "@ngxs/store": "3.4.3",
+    "@ngxs/store": "3.5.0",
     "core-js": "2.6.5",
     "rxjs": "6.5.2",
     "zone.js": "~0.9.1"
