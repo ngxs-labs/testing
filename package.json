@@ -24,7 +24,7 @@
     "@ngxs/store": "3.5.0",
     "core-js": "2.6.5",
     "rxjs": "6.5.2",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.10.0"
   },
   "devDependencies": {
     "jest-preset-angular": "^7.1.1",
