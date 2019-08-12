@@ -142,10 +142,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/compiler-cli@8.2.1":
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-8.2.1.tgz#88688425eaf03cc2ea500f3fc885019f9c60136b"
-  integrity sha512-q1jFpP6yedEzNY0QO50gRA4IkRSaZr5WSXVggE4fSF4Nhhn6k9pp4OaP9sYGLoO4OlvVbke4qIxNId1HDfx86g==
+"@angular/compiler-cli@8.2.2":
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-8.2.2.tgz#0b66157233ca2581e6b478a42150bea992230c8b"
+  integrity sha512-lEfWykViorBom4iWeZusoH4yAFkalyys/k9sI2qiTSVaH6TyowXbnfTMGfFQXKFydxI9sE86cCPoaRcR6fQcKQ==
   dependencies:
     canonical-path "1.0.0"
     chokidar "^2.1.1"
