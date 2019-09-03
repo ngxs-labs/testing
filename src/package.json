@@ -19,6 +19,6 @@
     "peerDependencies": {
         "@angular/core": "^8.2.4",
         "@ngxs/store": ">=3.5.1",
-        "rxjs": ">=6.5.2"
+        "rxjs": ">=6.5.3"
     }
 }
