@@ -1,4 +1,4 @@
-import { Store } from '@ngxs/store';
+import { StateContext, Store } from '@ngxs/store';
 import { ModuleWithProviders, Type } from '@angular/core';
 import { TestBedStatic } from '@angular/core/testing';
 import { NgxsConfig } from '@ngxs/store/src/symbols';
@@ -9,6 +9,10 @@ export interface NgxsOptionsTesting {
     ngxsOptions?: Partial<NgxsConfig>;
     imports?: ModuleWithProviders[];
     before?: () => void;
+}
+
+export interface StateContextMap {
+    [key: string]: StateContext<unknown>;
 }
 
 export type ResetFn<T = any> = (state: T) => T;
@@ -33,4 +37,5 @@ export interface NgxsTesting {
     readonly select: SelectFn;
     readonly selectOnce: SelectFn;
     readonly reset: ResetFn;
+    readonly getStateContextMocks: StateContextMap;
 }

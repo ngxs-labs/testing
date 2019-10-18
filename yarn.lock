@@ -1308,10 +1308,10 @@
     tree-kill "1.2.1"
     webpack-sources "1.4.3"
 
-"@ngxs/store@3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.5.1.tgz#277aab3adc532088e53699962142b57852f59298"
-  integrity sha512-oChcRNHHpYwrYQO4aPs4OP5vjvqspb9OdUW7ZcyVHJF5UyLCrETBWh+fqJwFoEXAiiOBL2CP4LtVcSu+o8DEVg==
+"@ngxs/store@3.5.1@dev":
+  version "3.5.1-dev.master-7f381de"
+  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.5.1-dev.master-7f381de.tgz#7af3c361f1c05014ff536a0156368fbab4a41c58"
+  integrity sha512-p83jmgpyWQue/Us+AkGPiCMlyl7quZ0ZlZjSLJXZ+uGz0jGMHPxefYI3C3NXecpRIm48Ak6pDyOtwohezAypRg==
   dependencies:
     tslib "^1.9.0"
 

@@ -62,4 +62,77 @@ describe('Full testing NGXS States with NgxsTestBed', () => {
         reset({});
         expect(snapshot()).toEqual({});
     });
+
+    it('should provide StateContextFactory for mocks', () => {
+        const ZOO_STATE_NAME = 'zoo';
+        const FOOD_STATE_NAME = 'food';
+
+        class FeedAction {
+            public static type = 'feed';
+            constructor(public feedAmount: number) {}
+        }
+
+        class AddAnimalAction {
+            public static type = 'addAnimal';
+            constructor(public animalAmount: number) {}
+        }
+
+        class ResetAnimalAction {
+            public static type = 'resetAnimal';
+            constructor() {}
+        }
+
+        class CleanAction {
+            public static type = 'clean';
+            constructor(public cleanAmount: number) {}
+        }
+
+        @State({ name: ZOO_STATE_NAME, defaults: { animals: 1 } })
+        class ZooState {
+            @Action(ResetAnimalAction) public reset(ctx: StateContext<any>) {
+                ctx.patchState({ animals: 0 });
+                ctx.dispatch(new AddAnimalAction(2));
+            }
+
+            @Action(AddAnimalAction) public add(ctx: StateContext<any>, { animalAmount }: AddAnimalAction) {
+                const state = ctx.getState();
+                ctx.setState({ ...state, animals: state.animals + animalAmount });
+            }
+        }
+
+        @State({ name: FOOD_STATE_NAME, defaults: { feed: 0, clean: 0 } })
+        class FoodState {
+            @Action(FeedAction) public feed(ctx: StateContext<any>, { feedAmount }: FeedAction) {
+                const state = ctx.getState();
+                ctx.setState({ ...state, feed: state.feed + feedAmount });
+                ctx.dispatch(new CleanAction(feedAmount));
+            }
+
+            @Action(CleanAction) public clean(ctx: StateContext<any>, { cleanAmount }: CleanAction) {
+                const state = ctx.getState();
+                ctx.patchState({ ...state, clean: state.clean + cleanAmount });
+            }
+        }
+
+        const { dispatch, getStateContextMocks } = NgxsTestBed.configureTestingStates({
+            states: [ZooState, FoodState]
+        });
+
+        dispatch(new FeedAction(4));
+        dispatch(new ResetAnimalAction());
+
+        expect(getStateContextMocks[ZOO_STATE_NAME].patchState).toHaveBeenCalledWith({ animals: 0 });
+        expect(getStateContextMocks[FOOD_STATE_NAME].patchState).not.toHaveBeenCalled();
+
+        expect(getStateContextMocks[ZOO_STATE_NAME].setState).not.toHaveBeenCalled();
+        expect(getStateContextMocks[FOOD_STATE_NAME].setState).toHaveBeenCalledWith({ feed: 4, clean: 0 });
+
+        expect(getStateContextMocks[ZOO_STATE_NAME].getState).not.toHaveBeenCalled();
+        expect(getStateContextMocks[FOOD_STATE_NAME].getState).toHaveBeenCalled();
+
+        expect(getStateContextMocks[ZOO_STATE_NAME].dispatch).toHaveBeenCalledWith(new AddAnimalAction(2));
+        expect(getStateContextMocks[ZOO_STATE_NAME].dispatch).toHaveBeenCalledTimes(1);
+        expect(getStateContextMocks[FOOD_STATE_NAME].dispatch).toHaveBeenCalledWith(new CleanAction(4));
+        expect(getStateContextMocks[FOOD_STATE_NAME].dispatch).toHaveBeenCalledTimes(1);
+    });
 });
