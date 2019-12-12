@@ -37,3 +37,53 @@ describe('Zoo', () => {
   
 });
 ```
+
+### Unit testing actions
+
+Use `getStateContextMocks` to mock and spy on the first argument of `@Actions` functions: the `StateContext`.
+
+With this state: 
+```ts
+@State({ name: ZOO_STATE_NAME, defaults: { animals: 1, visitors: 10 } })
+class ZooState {
+    @Action(ResetAnimalAction)
+    public reset(ctx: StateContext<any>) {
+        ctx.setState({ animals: 1, visitors: 10 });
+        ctx.dispatch(new AddAnimalAction());
+    }
+
+    @Action(AddAnimalAction)
+    public add(ctx: StateContext<any>, { animalAmount }: AddAnimalAction) {
+        const state = ctx.getState();
+        ctx.patchState({ animals: state.animals + 1 });
+    }
+}
+```
+
+`getStateContextMocks` allows the following tests:
+
+```ts
+it('should set state and dispatch new action', () => {
+    const { dispatch, getStateContextMocks } = NgxsTestBed.configureTestingStates({
+        states: [ZooState]
+    });
+    dispatch(new ResetAnimalAction());
+
+    expect(getStateContextMocks[ZOO_STATE_NAME].setState).toHaveBeenCalledWith({ animals: 1, visitors: 10 });
+
+    expect(getStateContextMocks[ZOO_STATE_NAME].dispatch).toHaveBeenCalledWith(new AddAnimalAction());
+    expect(getStateContextMocks[ZOO_STATE_NAME].dispatch).toHaveBeenCalledTimes(1);
+});
+
+it('should get state and patch to new value', () => {
+    const { dispatch, getStateContextMocks } = NgxsTestBed.configureTestingStates({
+        states: [ZooState]
+    });
+    dispatch(new AddAnimalAction());
+
+    expect(getStateContextMocks[ZOO_STATE_NAME].getState).toHaveBeenCalled();
+    expect(getStateContextMocks[ZOO_STATE_NAME].patchState).toHaveBeenCalledWith({ animals: 2 });
+});
+```
+
+
