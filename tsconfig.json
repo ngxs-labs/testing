@@ -2,6 +2,10 @@
     "compileOnSave": false,
     "compilerOptions": {
       "baseUrl": "./",
+      "paths": {
+        "@ngxs-labs/testing/jest": ["src/jest/src/public_api.ts"],
+        "@ngxs-labs/testing": ["src/public_api.ts"]
+      },
       "target": "es2015",
       "typeRoots": ["node_modules/@types"],
       "lib": [

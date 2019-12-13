@@ -8,7 +8,7 @@ module.exports = {
     setupFilesAfterEnv: ['<rootDir>/setupJest.ts'],
     rootDir: path.resolve('.'),
     testMatch: ['<rootDir>/src/**/*.spec.ts'],
-    collectCoverageFrom: ['<rootDir>/src/lib/**/*.ts'],
+    collectCoverageFrom: ['<rootDir>/src/lib/**/*.ts', '<rootDir>/src/jest/**/*.ts' ],
     coverageReporters: ['json', 'lcovonly', 'lcov', 'text', 'html'],
     coveragePathIgnorePatterns: ['/node_modules/'],
     globals: {
@@ -16,6 +16,10 @@ module.exports = {
             tsConfig: '<rootDir>/tsconfig.json',
             allowSyntheticDefaultImports: true
         }
+    },
+    moduleNameMapper: {
+        "@ngxs-labs/testing/jest": "<rootDir>/src/jest/src/public_api.ts",
+        "@ngxs-labs/testing": "<rootDir>/src/public_api.ts"
     },
     bail: true,
     collectCoverage: true,
