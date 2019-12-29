@@ -1,5 +1,11 @@
-import { Action, NgxsAfterBootstrap, NgxsOnInit, State, StateContext } from '@ngxs/store';
-import { NgxsTestBed } from '../lib/ngxs.setup';
+import { Action, NgxsAfterBootstrap, NgxsModule, NgxsOnInit, Select, Selector, State, StateContext } from '@ngxs/store';
+import { Component } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { NgxsTestBed } from '@ngxs-labs/testing';
+import { mockSelect } from '@ngxs-labs/testing/jest';
 
 describe('Full testing NGXS States with NgxsTestBed', () => {
     it('should be correct testing lifecycle with NgxsTestBed', () => {
@@ -134,5 +140,83 @@ describe('Full testing NGXS States with NgxsTestBed', () => {
         expect(getStateContextMocks[ZOO_STATE_NAME].dispatch).toHaveBeenCalledTimes(1);
         expect(getStateContextMocks[FOOD_STATE_NAME].dispatch).toHaveBeenCalledWith(new CleanAction(4));
         expect(getStateContextMocks[FOOD_STATE_NAME].dispatch).toHaveBeenCalledTimes(1);
+    });
+});
+
+describe('Select tests', () => {
+    class FeedAction {
+        public static type = 'zoo';
+        constructor(public payload: number) {}
+    }
+
+    class AddAnimalsAction {
+        public static type = 'add animals';
+        constructor(public payload: number) {}
+    }
+
+    @State({ name: 'zoo', defaults: { feed: 0, animals: 0 } })
+    class ZooState {
+        @Selector()
+        static feed(state: { feed: number; animals: number }) {
+            return state.feed;
+        }
+
+        @Selector()
+        static animals(state: { feed: number; animals: number }) {
+            return state.animals;
+        }
+
+        @Action(FeedAction) public feed(ctx: StateContext<any>, { payload }: FeedAction) {
+            ctx.patchState({ feed: payload });
+        }
+
+        @Action(AddAnimalsAction) public animals(ctx: StateContext<any>, { payload }: AddAnimalsAction) {
+            const state = ctx.getState();
+            ctx.patchState({ animals: state.animals + payload });
+        }
+    }
+
+    @Component({
+        template: `
+            <span>{{ foodSelector$ | async }}</span>
+            <p>{{ animalsSelector$ | async }}</p>
+        `
+    })
+    class HostComponent {
+        @Select(ZooState.feed) foodSelector$!: Observable<number>;
+        @Select(ZooState.animals) animalsSelector$!: Observable<number>;
+    }
+
+    let foodSelectorSubject: Subject<number>;
+    let animalsSelectorSubject: Subject<number>;
+    let fixture: ComponentFixture<HostComponent>;
+    let component: HostComponent;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [HostComponent],
+            imports: [CommonModule, NgxsModule.forRoot([ZooState])]
+        }).compileComponents();
+
+        foodSelectorSubject = mockSelect(ZooState.feed);
+        animalsSelectorSubject = mockSelect(ZooState.animals);
+
+        fixture = TestBed.createComponent(HostComponent);
+        component = fixture.componentInstance;
+
+        fixture.detectChanges();
+    });
+
+    it('should display mocked value', () => {
+        foodSelectorSubject.next(1);
+        animalsSelectorSubject.next(2);
+
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+
+        const span = fixture.debugElement.query(By.css('span'));
+        expect(span.nativeElement.innerHTML).toMatch('1');
+        const p = fixture.debugElement.query(By.css('p'));
+        expect(p.nativeElement.innerHTML).toMatch('2');
     });
 });
