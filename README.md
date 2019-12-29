@@ -86,4 +86,39 @@ it('should get state and patch to new value', () => {
 });
 ```
 
+### Mock Select
+
+Use `mockSelect` to quickly mock selector in component.
+`mockSelect` provides a `Subject` allowing to trigger the mocked selector on demand and with any value.
+```ts
+import { mockSelect } from '@ngxs-labs/testing/jest';
+
+describe('Select tests', () => {
+    let foodSelectorSubject: Subject<number>;
+  
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            ...
+            imports: [
+                ...
+                NgxsModule.forRoot([ZooState])
+            ]
+        }).compileComponents();
+    
+        foodSelectorSubject = mockSelect(ZooState.feed);
+
+        ...
+    });
+    
+    it('should display mocked value', () => {
+
+        foodSelectorSubject.next(10);
+        fixture.detectChanges();
+        ...
+        expect(food).toEqual(10)
+    });
+});
+```
+
+
 
