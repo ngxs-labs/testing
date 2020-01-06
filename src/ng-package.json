@@ -1,11 +1,12 @@
 {
-  "$schema": "../node_modules/ng-packagr/package.schema.json",
-  "lib": {
-    "flatModuleFile": "ngxs-labs-testing",
-    "entryFile": "./public_api.ts",
-    "umdModuleIds": {
-      "@ngxs/store": "ngxs-store"
-    }
-  },
-  "dest": "../dist/testing"
+    "$schema": "../node_modules/ng-packagr/package.schema.json",
+    "lib": {
+        "flatModuleFile": "ngxs-labs-testing",
+        "entryFile": "./public_api.ts",
+        "umdModuleIds": {
+            "@ngxs/store": "ngxs-store",
+            "@ngxs/store/internals": "ngxs-store-internals"
+        }
+    },
+    "dest": "../dist/testing"
 }
