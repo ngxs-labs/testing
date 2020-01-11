@@ -1,5 +1,5 @@
 import { StateContext, Store } from '@ngxs/store';
-import { ModuleWithProviders, Type } from '@angular/core';
+import { ModuleWithProviders, Provider, Type } from '@angular/core';
 import { TestBedStatic } from '@angular/core/testing';
 import { NgxsConfig } from '@ngxs/store/src/symbols';
 import { Observable } from 'rxjs';
@@ -9,6 +9,7 @@ export interface NgxsOptionsTesting {
     ngxsOptions?: Partial<NgxsConfig>;
     imports?: ModuleWithProviders[];
     before?: () => void;
+    providers?: Provider[];
 }
 
 export interface StateContextMap {

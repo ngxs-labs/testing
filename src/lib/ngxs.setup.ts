@@ -73,7 +73,8 @@ export class NgxsTestBed {
                 NgxsTestModule,
                 NgxsModule.forRoot(options.states || [], options.ngxsOptions || {}),
                 ...(options.imports || [])
-            ]
+            ],
+            providers: options.providers || []
         }).compileComponents();
 
         NgxsTestBed.ngxsBootstrap();
