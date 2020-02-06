@@ -1,6 +1,7 @@
 {
+    "$schema": "../node_modules/ng-packagr/package.schema.json",
     "name": "@ngxs-labs/testing",
-    "version": "0.0.3",
+    "version": "1.0.0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ngxs-labs/testing.git"
@@ -17,8 +18,19 @@
     ],
     "sideEffects": true,
     "peerDependencies": {
-        "@angular/core": "^8.2.14",
+        "@angular/core": ">=8.0.0",
         "@ngxs/store": ">=3.6.1",
         "rxjs": ">=6.5.4"
+    },
+    "ngPackage": {
+        "lib": {
+            "flatModuleFile": "ngxs-labs-testing",
+            "entryFile": "./public_api.ts",
+            "umdModuleIds": {
+                "@ngxs/store": "ngxs-store",
+                "@ngxs/store/internals": "ngxs-store-internals"
+            }
+        },
+        "dest": "../@ngxs-labs/testing"
     }
 }

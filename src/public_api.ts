@@ -1,2 +1,1 @@
-export { NgxsTestBed } from './lib/ngxs.setup';
-export * from './lib/symbol';
+export { NgxsTestingModule } from './main/ngxs-testing.module';

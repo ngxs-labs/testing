@@ -12,9 +12,9 @@ function copyReadmeAfterSuccessfulBuild(): void {
   }
 
   createReadStream(path)
-    .pipe(createWriteStream(join(__dirname, `../dist/${name}/README.md`)))
+    .pipe(createWriteStream(join(__dirname, `../@ngxs-labs/${name}/README.md`)))
     .on('finish', () => {
-      console.log(`Successfully copied README.md into dist/${name} folder!`);
+      console.log(`Successfully copied README.md into @ngxs-labs/${name} folder!`);
     });
 }
 
