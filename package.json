@@ -51,7 +51,7 @@
     "tslib": "1.11.1",
     "tslint": "5.20.1",
     "tslint-sonarts": "1.9.0",
-    "typescript": "3.5.3",
+    "typescript": "3.8.3",
     "yargs": "13.3.0"
   }
 }
