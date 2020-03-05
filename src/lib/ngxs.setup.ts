@@ -5,7 +5,7 @@ import 'zone.js/dist/zone';
 import { ApplicationRef, Type } from '@angular/core';
 import { TestBed, TestBedStatic } from '@angular/core/testing';
 import { DOCUMENT } from '@angular/common';
-import { ɵBrowserDomAdapter as BrowserDomAdapter, ɵDomAdapter as DomAdapter } from '@angular/platform-browser';
+import { ɵBrowserDomAdapter as BrowserDomAdapter } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { NgxsModule, StateContext, Store } from '@ngxs/store';
 
@@ -127,14 +127,11 @@ export class NgxsTestBed {
     }
 
     private static createRootNode(selector = 'app-root'): void {
-        const document = TestBed.get(DOCUMENT);
-        const adapter: DomAdapter = new BrowserDomAdapter();
-
-        const root = adapter.firstChild(adapter.content(adapter.createTemplate(`<${selector}></${selector}>`)));
-
-        const oldRoots = adapter.querySelectorAll(document, selector);
+        const document: Document = TestBed.get(DOCUMENT);
+        const adapter = new BrowserDomAdapter();
+        const root = adapter.createElement(selector);
+        const oldRoots = document.querySelectorAll(selector);
         oldRoots.forEach((oldRoot) => adapter.remove(oldRoot));
-
-        adapter.appendChild(document.body, root);
+        document.body.appendChild(root);
     }
 }

@@ -16,11 +16,11 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "8.2.14",
-    "@angular/compiler": "8.2.14",
-    "@angular/core": "8.2.14",
-    "@angular/platform-browser": "8.2.14",
-    "@angular/platform-browser-dynamic": "8.2.14",
+    "@angular/common": "9.0.5",
+    "@angular/compiler": "9.0.5",
+    "@angular/core": "9.0.5",
+    "@angular/platform-browser": "9.0.5",
+    "@angular/platform-browser-dynamic": "9.0.5",
     "@ngxs/store": "3.6.2",
     "core-js": "2.6.5",
     "rxjs": "6.5.4",
@@ -30,8 +30,8 @@
     "jest-preset-angular": "^7.1.1",
     "@angular-devkit/build-angular": "~0.900.5",
     "@angular-devkit/build-ng-packagr": "~0.900.5",
-    "@angular/cli": "8.3.25",
-    "@angular/compiler-cli": "8.2.14",
+    "@angular/cli": "9.0.5",
+    "@angular/compiler-cli": "9.0.5",
     "@commitlint/cli": "7.6.1",
     "@commitlint/config-angular": "7.6.0",
     "@types/jest": "24.9.1",
@@ -51,7 +51,7 @@
     "tslib": "1.11.1",
     "tslint": "5.20.1",
     "tslint-sonarts": "1.9.0",
-    "typescript": "3.5.3",
+    "typescript": "3.7.5",
     "yargs": "13.3.0"
   }
 }
