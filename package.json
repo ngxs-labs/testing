@@ -47,7 +47,7 @@
     "prettier": "1.19.1",
     "semver": "5.6.0",
     "ts-node": "8.6.2",
-    "tsickle": "^0.38.0",
+    "tsickle": "^0.38.1",
     "tslib": "1.11.1",
     "tslint": "5.20.1",
     "tslint-sonarts": "1.9.0",
