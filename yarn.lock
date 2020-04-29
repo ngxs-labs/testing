@@ -156,10 +156,10 @@
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-9.1.3.tgz#66eee1b5ec392469d2d5eca023de200233cd5ddb"
   integrity sha512-OGrd/x+WoceskeJWZI3ur+KqVoBHn2kmbg57RyJ8Ng/BkdDVYiXzQ/UvvX1WYGH/YzmiiVdlnVq55xkHkzGaXw==
 
-"@angular/compiler-cli@9.1.3":
-  version "9.1.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-9.1.3.tgz#2554b73e97c31dec66ac1e48b194ec66c6c1f438"
-  integrity sha512-FqDPmEbJQmzzxqF08CJfqT9XKJFPYdyZuFFStKkJEZ5s1JrjrBlgQSqdF0qp5jWNsjTB87USLHC5zAlzJtMKxQ==
+"@angular/compiler-cli@9.1.4":
+  version "9.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-9.1.4.tgz#24c7c7060bb13f65337fb2998322d56021e185c1"
+  integrity sha512-n3PzqNnPD7s/AF9mv5CnarK0sgfoq4txFncHjJWBSltuTQoz6BDZyjuEdqsSLUvgAZPeLsmohemOzEE38HYHZA==
   dependencies:
     canonical-path "1.0.0"
     chokidar "^3.0.0"
